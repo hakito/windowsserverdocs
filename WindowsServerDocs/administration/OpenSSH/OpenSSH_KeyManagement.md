@@ -149,7 +149,7 @@ The example below copies the public key to the server (where "username" is repla
 $authorizedKey = Get-Content -Path $env:USERPROFILE\.ssh\id_ed25519.pub
 
 # Generate the PowerShell to be run remote that will copy the public key file generated previously on your client to the authorized_keys file on your server
-$remotePowershell = "powershell New-Item -Force -ItemType Directory -Path $env:USERPROFILE\.ssh; Add-Content -Force -Path $env:USERPROFILE\.ssh\authorized_keys -Value '$authorizedKey'"
+$remotePowershell = "powershell New-Item -Force -ItemType Directory -Path $env:USERPROFILE\.ssh; powershell Add-Content -Force -Path $env:USERPROFILE\.ssh\authorized_keys -Value \'$authorizedKey\'"
 
 # Connect to your server and run the PowerShell using the $remotePowerShell variable
 ssh username@domain1@contoso.com $remotePowershell
